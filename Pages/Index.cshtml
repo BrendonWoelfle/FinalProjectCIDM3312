@@ -1,0 +1,76 @@
+@page
+@model FinalProjectCidm3312.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1>Index</h1>
+
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+    <table class="table">   
+        <thead>
+            <tr>
+                <th>
+                    @Html.DispalyNameFor(model => model.Shirt[0].TSize)
+                </th>
+                <th>
+                    @Html.DispalyNameFor(model => model.Shirt[0].TBrand)
+                </th>
+                <th>
+                    @Html.DispalyNameFor(model => model.Shirt[0].TColor)
+                </th>
+                <th>
+                    @Html.DispalyNameFor(model => model.Shirt[0].TDesign)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.Shirt)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TBrand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TDesign)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<hr />
+@{
+    var prevDisabled=""
+    if (Model.PageNum <=1)
+    {
+        preDisabled = "disabled";
+    }
+}
+@{
+    var forwDisabled=""
+    if (Model.PageNum <=10)
+    {
+        forwDisabled = "disabled";
+    }
+}
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item @preDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+        <li class="page-item @forwDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a><li>
+    </ul>
+</nav>

@@ -1,0 +1,31 @@
+@page
+@model FinalProjectCIDM3312.Pages.ShoesModel
+
+@{
+    ViewData["Title"] = "Shoes";
+}
+
+<h1>Shoes</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thread>
+        <tr>
+            <th>
+                @{
+                    var firstSort = "Size_asc";
+                    if (Model.CurrentSort == "Size_asc")
+                    {
+                        firstSort = "Size_desc";
+                    }
+                }
+                <a asp-page="./Shoe" asp-route-CurrentSort="@firstSort">@Html.DisplayNameFor(model => model.Shoes[0].Size)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shoes[0].Brand)
+            </th>
+        </tr>
+    </thread>
+</table>

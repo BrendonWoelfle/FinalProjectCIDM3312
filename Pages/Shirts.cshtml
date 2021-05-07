@@ -1,0 +1,38 @@
+@page
+@model ShirtsModel
+<div class ="row">
+    <div class="col-2 border">
+       <p>Please Choose Your Shoe's</p>
+    </div>
+    <div class="col-6 border">
+        <form methods="post">
+            <div class="form-group">
+                <label asp-for="TSize" class="contorl-label">Shirt Size</label>
+                <input asp-for="TSize" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="TBrand" class="control-label">Shirt Brand</label>
+                <input asp-for="TBrand" class="form-contorl" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TColor" class="contorl-label">Shirt Color</label>
+                <input asp-for="TColor" class="form-contorl" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TDesign" class="control-label">Shirt Design</label>
+                <input asp-for="TDesign" class="form-contorl" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="submit" class="btn btn-primary" />
+            </div>
+            
+        </form>
+    </div>
+    <div class="col-4 border border-danger">
+        Thank you @Model.TSize @Model.TBrand @Model.TColor
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
